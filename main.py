@@ -11,7 +11,7 @@ class Menu:
     @staticmethod
     def main_menu():
         while True:
-            choice = input("1. Start Game\n2. Quit\nChoose (1/2): ")
+            choice = input("1. Start Game\n2. Quit\nChoose (1-2): ")
             if choice in ("1", "2"):
                 return int(choice)
             print("Invalid choice!")
@@ -19,8 +19,8 @@ class Menu:
     @staticmethod
     def end_menu():
         while True:
-            choice = input("1. Play Again\n2. Quit\nChoose (1/2): ")
-            if choice in ("1", "2"):
+            choice = input("1. Play Again\n2. Quit\n3. Show Score\nChoose (1-2-3): ")
+            if choice in ("1", "2", "3"):
                 return int(choice)
             print("Invalid choice!")
 
@@ -112,7 +112,7 @@ class Game:
         while True:
             name = input("Enter your name: ")
             if len(name) >= 2 and name.isalpha():
-                return name
+                return name.capitalize()
             print("Invalid name!")
 
     def ask_symbol(self):
@@ -176,9 +176,12 @@ class Game:
                 again = Menu.end_menu()
                 if again == 2:
                     break
+                elif again == 3:
+                    clear_screen()
+                    print(f"\nScores:\n{self.player1.name}: {self.player1.score}\n{self.player2.name}: {self.player2.score}\n")
+                    input("Press Enter to continue… ")
 
             print("Returning to main menu…")
-
 
 
 # ============================
